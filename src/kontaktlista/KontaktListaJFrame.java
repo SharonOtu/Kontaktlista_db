@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package kontaktlista;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -11,6 +13,7 @@ package kontaktlista;
 public class KontaktListaJFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KontaktListaJFrame.class.getName());
+ DbManager db = new DbManager();
 
     /**
      * Creates new form KontaktListaJFrame
@@ -31,15 +34,15 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         rbtnGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         tbxFörnamn = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rbtnFörnamn = new javax.swing.JRadioButton();
+        rbtnEfternamn = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         tbxEfternamn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        txtLista = new javax.swing.JTextArea();
+        tbxTelefonnummer = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,17 +54,17 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
             }
         });
 
-        rbtnGroup.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Förnamn först");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rbtnGroup.add(rbtnFörnamn);
+        rbtnFörnamn.setSelected(true);
+        rbtnFörnamn.setText("Förnamn först");
+        rbtnFörnamn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rbtnFörnamnActionPerformed(evt);
             }
         });
 
-        rbtnGroup.add(jRadioButton2);
-        jRadioButton2.setText("Efternamn först");
+        rbtnGroup.add(rbtnEfternamn);
+        rbtnEfternamn.setText("Efternamn först");
 
         jLabel2.setText("Efternamn");
 
@@ -80,14 +83,13 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtLista.setColumns(20);
+        txtLista.setRows(5);
+        jScrollPane1.setViewportView(txtLista);
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tbxTelefonnummer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tbxTelefonnummerActionPerformed(evt);
             }
         });
 
@@ -105,7 +107,7 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tbxFörnamn, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jTextField1))
+                            .addComponent(tbxTelefonnummer))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -120,9 +122,9 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbtnFörnamn)
                                 .addGap(34, 34, 34)
-                                .addComponent(jRadioButton2)))))
+                                .addComponent(rbtnEfternamn)))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,13 +140,13 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rbtnFörnamn)
+                    .addComponent(rbtnEfternamn))
                 .addContainerGap())
         );
 
@@ -154,12 +156,35 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        String förnamn = this.tbxFörnamn.getText(); //läser av textboxen
         this.tbxFörnamn.setText(""); //Tömmer textboxen
-        System.out.println(förnamn); //Skriver ut texten konsollen
+        System.out.println(förnamn);
+        
+        String efternamn = this.tbxEfternamn.getText();//Skriver ut texten konsollen
+        this.tbxEfternamn.setText("");
+        
+        String telefonnummer = this.tbxTelefonnummer.getText();
+        this.tbxTelefonnummer.setText("");
+        
+        if(förnamn.isBlank()&&efternamn.isBlank()&&telefonnummer.isBlank()) {
+            //Kollar om det finns text, annars skapas inte kontakten
+        } 
+        else{
+            
+            Kontakt kon = new Kontakt(förnamn,efternamn,telefonnummer);
+            db.insert(kon);
+         
+         if(this.rbtnFörnamn.isSelected()) {
+             SkrivUtF();
+         }
+         else {
+             SkrivUtE();
+         } 
+             
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tbxTelefonnummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbxTelefonnummerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tbxTelefonnummerActionPerformed
 
     private void tbxEfternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbxEfternamnActionPerformed
         // TODO add your handling code here:
@@ -169,9 +194,9 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbxFörnamnActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbtnFörnamnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,19 +222,61 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new KontaktListaJFrame().setVisible(true));
     }
+    
+    private void SkrivUtF(){
+        ResultSet rs = db.getAllData();
+        if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.txtLista.append (rs.getInt("kontaktid") + "\t"
+                            + rs.getString("firstname") + "\t "
+                            + rs.getString("lastname") + "\t "
+                            + rs.getString("phonenumber") + "\n");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
+
+    }
+    
+    
+    private void SkrivUtE(){
+              ResultSet rs = db.getAllData();
+        if (rs != null) {
+            try {
+                while (rs.next()) {
+                    this.txtLista.append (rs.getInt("kontaktid") + "\t"
+                            + rs.getString("firstname") + "\t "
+                            + rs.getString("lastname") + "\t "
+                            + rs.getString("phonenumber") + "\n); "
+                            + rs.getInt("age"));
+                }
+            } catch (SQLException ex) {
+                System.out.println("Ingen data.");
+            }
+        } else {
+            System.out.println("Ingen data från databasen, kontrollera anslutningen.");
+        }
+  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton rbtnEfternamn;
+    private javax.swing.JRadioButton rbtnFörnamn;
     private javax.swing.ButtonGroup rbtnGroup;
     private javax.swing.JTextField tbxEfternamn;
     private javax.swing.JTextField tbxFörnamn;
+    private javax.swing.JTextField tbxTelefonnummer;
+    private javax.swing.JTextArea txtLista;
     // End of variables declaration//GEN-END:variables
+
+   
 }
