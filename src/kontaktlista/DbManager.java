@@ -95,6 +95,12 @@ public class DbManager {
         //}
         return rs;
     }
+    
+    
+    public int delete (Kontakt kontakt){
+        
+        
+    }
 
     /**
      * Method for updating a contact in the datebase by it´s id number.
