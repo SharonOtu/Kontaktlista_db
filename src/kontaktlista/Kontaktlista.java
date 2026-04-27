@@ -79,8 +79,8 @@ public class Kontaktlista {
         String Telefonnummer = input.nextLine();
 
         //  Kontakt kon1 = new Kontakt(Fornamn, Efternamn, Telefonnummer);
-        ArrayList <antalKontakter> konlista = new Kontakt(Fornamn, Efternamn, Telefonnummer);
-        konlista.add
+        Kontakt kon = new Kontakt(Fornamn, Efternamn, Telefonnummer);
+        konlista.add(kon);
         return antalKontakter;
     }
     
@@ -92,12 +92,12 @@ public class Kontaktlista {
           }
     
     
-    public static void skrivUtE (Kontakt[]konlista, int antalKontakter){
+    public static void skrivUtE (ArrayList <Kontakt> konlista, int antalKontakter){
       
-     for(int i = 0;i < antalKontakter ;i++){
+   /*  for(int i = 0;i < antalKontakter ;i++){
            konlista[i].skrivUte();
           
-      } 
+      } */
         
     }
 }

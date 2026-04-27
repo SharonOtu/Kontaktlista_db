@@ -39,10 +39,12 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tbxEfternamn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        LäggTillBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtLista = new javax.swing.JTextArea();
         tbxTelefonnummer = new javax.swing.JTextField();
+        RaderaBtn = new javax.swing.JButton();
+        tbxID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,10 +78,10 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
 
         jLabel3.setText("Telefon");
 
-        jButton1.setText("Lägg Till");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LäggTillBtn.setText("Lägg Till");
+        LäggTillBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                LäggTillBtnActionPerformed(evt);
             }
         });
 
@@ -90,6 +92,13 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         tbxTelefonnummer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbxTelefonnummerActionPerformed(evt);
+            }
+        });
+
+        RaderaBtn.setText("Radera");
+        RaderaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RaderaBtnActionPerformed(evt);
             }
         });
 
@@ -108,15 +117,17 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tbxFörnamn, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                             .addComponent(tbxTelefonnummer))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LäggTillBtn)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jButton1))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(RaderaBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(tbxID, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,10 +147,15 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                     .addComponent(tbxFörnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(tbxEfternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                .addGap(18, 18, 18)
+                .addComponent(LäggTillBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbxID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RaderaBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton1)
                     .addComponent(tbxTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
@@ -153,7 +169,7 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void LäggTillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LäggTillBtnActionPerformed
        String förnamn = this.tbxFörnamn.getText(); //läser av textboxen
         this.tbxFörnamn.setText(""); //Tömmer textboxen
         System.out.println(förnamn);
@@ -180,7 +196,7 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
          } 
              
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_LäggTillBtnActionPerformed
 
     private void tbxTelefonnummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbxTelefonnummerActionPerformed
         // TODO add your handling code here:
@@ -197,6 +213,10 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
     private void rbtnFörnamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFörnamnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnFörnamnActionPerformed
+
+    private void RaderaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaderaBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RaderaBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,7 +244,7 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
     }
     
     private void SkrivUtF(){
-        ResultSet rs = db.getAllData();
+        ResultSet rs = db.getAllData(); 
         if (rs != null) {
             try {
                 while (rs.next()) {
@@ -251,8 +271,8 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
                     this.txtLista.append (rs.getInt("kontaktid") + "\t"
                             + rs.getString("firstname") + "\t "
                             + rs.getString("lastname") + "\t "
-                            + rs.getString("phonenumber") + "\n); "
-                            + rs.getInt("age"));
+                            + rs.getString("phonenumber") + "\n"); 
+                            //+ rs.getInt("age"));
                 }
             } catch (SQLException ex) {
                 System.out.println("Ingen data.");
@@ -262,9 +282,14 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
         }
   
     }
+    
+    private void RaderaKon () {
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton LäggTillBtn;
+    private javax.swing.JButton RaderaBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -274,6 +299,7 @@ public class KontaktListaJFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup rbtnGroup;
     private javax.swing.JTextField tbxEfternamn;
     private javax.swing.JTextField tbxFörnamn;
+    private javax.swing.JTextField tbxID;
     private javax.swing.JTextField tbxTelefonnummer;
     private javax.swing.JTextArea txtLista;
     // End of variables declaration//GEN-END:variables
