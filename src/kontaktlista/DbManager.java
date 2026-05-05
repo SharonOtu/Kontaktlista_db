@@ -99,7 +99,7 @@ public class DbManager {
     
     public int delete (Kontakt kontakt){
         
-        
+        return 0;
     }
 
     /**
