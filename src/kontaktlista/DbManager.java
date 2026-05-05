@@ -97,9 +97,16 @@ public class DbManager {
     }
     
     
-    public int delete (Kontakt kontakt){
+    public void delete (int kontaktId){
         
-        return 0;
+      String sql = "DELETE FROM kontaktlista WHERE kontaktId = ";
+      
+       try (Statement stmt = conn.createStatement()) {
+           stmt.executeUpdate("Kontakt är borttagen");               
+      }
+       catch (SQLException e) {
+                System.out.println(e.getMessage() + " Error!");
+            }
     }
 
     /**

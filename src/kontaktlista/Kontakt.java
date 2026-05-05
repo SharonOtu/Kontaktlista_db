@@ -9,24 +9,27 @@ package kontaktlista;
  * @author shaot01
  */
 public class Kontakt {
+    private int KontaktId;
     private String Fornamn;
     private String Efternamn;
     private String Telefonnummer;
     
     
-public Kontakt (String f, String e, String t){
+public Kontakt (int k, String f, String e, String t){
     this.Fornamn = f;
     Efternamn =e;
     Telefonnummer = t;
+    KontaktId = k;
 }
 
-public Kontakt (String f, String t){
+public Kontakt (int k, String f, String t){
+    this.KontaktId = k;
     this.Fornamn = f;
     this.Telefonnummer = t;
     this.Efternamn="";
 }
 public void setTelefonnummer(String t){
- this.Telefonnummer=t;
+ this.Telefonnummer = t;
 }
 
 public String getFornamn(){
