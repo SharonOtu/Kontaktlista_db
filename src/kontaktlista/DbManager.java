@@ -99,7 +99,7 @@ public class DbManager {
     
     public void delete (int kontaktId){
         
-      String sql = "DELETE FROM kontaktlista WHERE kontaktId = ";
+      String sql = "DELETE * FROM kontaktlista WHERE kontaktid = ";
       
        try (Statement stmt = conn.createStatement()) {
            stmt.executeUpdate("Kontakt är borttagen");               

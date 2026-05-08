@@ -79,7 +79,7 @@ public class Kontaktlista {
         String Telefonnummer = input.nextLine();
 
         //  Kontakt kon1 = new Kontakt(Fornamn, Efternamn, Telefonnummer);
-        Kontakt kon = new Kontakt(Fornamn, Efternamn, Telefonnummer);
+        Kontakt kon = new Kontakt(KontaktId, Fornamn, Efternamn, Telefonnummer);
         konlista.add(kon);
         return antalKontakter;
     }
