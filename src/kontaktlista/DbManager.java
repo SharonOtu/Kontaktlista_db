@@ -97,7 +97,7 @@ public class DbManager {
     }
     
     
-    public void delete (int kontaktId){
+    public void delete (String kontaktId){
         
       String sql = "DELETE * FROM kontaktlista WHERE kontaktid = ";
       
